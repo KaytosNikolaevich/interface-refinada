@@ -12,7 +12,7 @@ const Dashboard = () => {
   const childName = localStorage.getItem("child_name") || "Aventureiro";
 
   const actions = [
-    { label: "Aprender", emoji: "📚", color: "bg-primary",   path: "/modules",        speech: "Vamos aprender!" },
+    { label: "Aprender", emoji: "📚", color: "bg-secondary", path: "/modules",        speech: "Vamos aprender!" },
     { label: "Histórias", emoji: "📖", color: "bg-accent",   path: "/stories",        speech: "Ouvir histórias!" },
     { label: "Praticar Voz", emoji: "🎤", color: "bg-warning", path: "/voice-practice", speech: "Praticar sua voz!" },
   ];

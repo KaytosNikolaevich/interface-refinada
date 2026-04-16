@@ -50,10 +50,10 @@ export const modules: Module[] = [
 ];
 
 const letterEmojis: Record<string, string> = {
-  A: "🍎", B: "🍌", C: "🐱", D: "🦕", E: "⭐", F: "🌸", G: "🐱", H: "🏠",
-  I: "🏝️", J: "🪀", K: "🪁", L: "🦁", M: "🐒", N: "☁️", O: "👁️", P: "🐧",
-  Q: "🧀", R: "🐀", S: "☀️", T: "🐢", U: "🍇", V: "🎻", W: "🌊", X: "✖️",
-  Y: "🪀", Z: "🦓"
+  A: "✈️", B: "🍌", C: "🏠", D: "🦕", E: "⭐", F: "🌸", G: "🐱", H: "🚁",
+  I: "🏝️", J: "🐊", K: "🥝", L: "🦁", M: "🐒", N: "☁️", O: "👁️", P: "🐧",
+  Q: "🧀", R: "🐀", S: "☀️", T: "🐢", U: "🍇", V: "🎻", W: "🧇", X: "☕",
+  Y: "🧘", Z: "🦓"
 };
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -98,20 +98,20 @@ const opt = (id: string, content: string, emoji: string, isCorrect: boolean): Ex
 });
 
 export const exercises: Exercise[] = [
-  { id: "e-A1", lessonId: "l-A", type: "multiple_choice", questionText: "Qual é a letra A?", options: [opt("o1","A","🍎",true), opt("o2","B","🍌",false), opt("o3","C","🐱",false)] },
-  { id: "e-A2", lessonId: "l-A", type: "multiple_choice", questionText: "Toque na letra A", options: [opt("o4","D","🦕",false), opt("o5","A","🍎",true), opt("o6","E","⭐",false)] },
-  { id: "e-A3", lessonId: "l-A", type: "multiple_choice", questionText: "Encontre o A", options: [opt("o7","F","🌸",false), opt("o8","G","🐱",false), opt("o9","A","🍎",true)] },
+  { id: "e-A1", lessonId: "l-A", type: "multiple_choice", questionText: "Qual é a letra A?", options: [opt("o1","A","✈️",true), opt("o2","B","🍌",false), opt("o3","C","🏠",false)] },
+  { id: "e-A2", lessonId: "l-A", type: "multiple_choice", questionText: "Toque na letra A", options: [opt("o4","D","🦕",false), opt("o5","A","✈️",true), opt("o6","E","⭐",false)] },
+  { id: "e-A3", lessonId: "l-A", type: "multiple_choice", questionText: "Encontre o A", options: [opt("o7","F","🌸",false), opt("o8","G","🐱",false), opt("o9","A","✈️",true)] },
   { id: "e-B1", lessonId: "l-B", type: "multiple_choice", questionText: "Qual é a letra B?", options: [opt("o10","B","🍌",true), opt("o11","D","🦕",false), opt("o12","P","🐧",false)] },
   { id: "e-B2", lessonId: "l-B", type: "multiple_choice", questionText: "Toque na letra B", options: [opt("o13","R","🐀",false), opt("o14","B","🍌",true), opt("o15","Q","🧀",false)] },
-  { id: "e-B3", lessonId: "l-B", type: "multiple_choice", questionText: "Encontre o B", options: [opt("o16","A","🍎",false), opt("o17","C","🐱",false), opt("o18","B","🍌",true)] },
-  { id: "e-C1", lessonId: "l-C", type: "multiple_choice", questionText: "Qual é a letra C?", options: [opt("o19","C","🐱",true), opt("o20","G","🐱",false), opt("o21","O","👁️",false)] },
+  { id: "e-B3", lessonId: "l-B", type: "multiple_choice", questionText: "Encontre o B", options: [opt("o16","A","✈️",false), opt("o17","C","🏠",false), opt("o18","B","🍌",true)] },
+  { id: "e-C1", lessonId: "l-C", type: "multiple_choice", questionText: "Qual é a letra C?", options: [opt("o19","C","🏠",true), opt("o20","G","🐱",false), opt("o21","O","👁️",false)] },
   { id: "e-D1", lessonId: "l-D", type: "multiple_choice", questionText: "Qual é a letra D?", options: [opt("o22","B","🍌",false), opt("o23","D","🦕",true), opt("o24","P","🐧",false)] },
   { id: "e-E1", lessonId: "l-E", type: "multiple_choice", questionText: "Qual é a letra E?", options: [opt("o25","E","⭐",true), opt("o26","F","🌸",false), opt("o27","I","🏝️",false)] },
-  { id: "e-BA1", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Qual é a sílaba BA?", options: [opt("os1","BA","🍌",true), opt("os2","DA","🦕",false), opt("os3","CA","🐱",false)] },
-  { id: "e-BA2", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Toque em BA", options: [opt("os4","BO","⚽",false), opt("os5","BA","🍌",true), opt("os6","BE","🐝",false)] },
-  { id: "e-CA1", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Qual é a sílaba CA?", options: [opt("os7","CA","🐱",true), opt("os8","CO","🥥",false), opt("os9","DA","🦕",false)] },
-  { id: "e-CA2", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Toque em CA", options: [opt("os10","BA","🍌",false), opt("os11","CA","🐱",true), opt("os12","CU","🥤",false)] },
-  { id: "e-DA1", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Qual é a sílaba DA?", options: [opt("os13","DA","🎲",true), opt("os14","BA","🍌",false), opt("os15","DE","🔟",false)] },
+  { id: "e-BA1", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Qual é a sílaba BA?", options: [opt("os1","BA","🍌",true), opt("os2","DA","🦕",false), opt("os3","CA","🏠",false)] },
+  { id: "e-BA2", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Toque em BA", options: [opt("os4","BO","⚽",false), opt("os5","BA","🍌",true), opt("os6","BE","👶",false)] },
+  { id: "e-CA1", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Qual é a sílaba CA?", options: [opt("os7","CA","🏠",true), opt("os8","CO","🥥",false), opt("os9","DA","🦕",false)] },
+  { id: "e-CA2", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Toque em CA", options: [opt("os10","BA","🍌",false), opt("os11","CA","🏠",true), opt("os12","CU","🧊",false)] },
+  { id: "e-DA1", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Qual é a sílaba DA?", options: [opt("os13","DA","🎲",true), opt("os14","BA","🍌",false), opt("os15","DE","🦷",false)] },
   { id: "e-DA2", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Toque em DA", options: [opt("os16","DI","💎",false), opt("os17","DA","🎲",true), opt("os18","DO","🎵",false)] },
   { id: "e-BOLA", lessonId: "l-word-BOLA", type: "multiple_choice", questionText: "Onde está a BOLA?", options: [opt("ow1","BOLA","⚽",true), opt("ow2","CASA","🏠",false), opt("ow3","GATO","🐱",false)] },
   { id: "e-CASA", lessonId: "l-word-CASA", type: "multiple_choice", questionText: "Onde está a CASA?", options: [opt("ow4","DADO","🎲",false), opt("ow5","CASA","🏠",true), opt("ow6","MALA","🧳",false)] },

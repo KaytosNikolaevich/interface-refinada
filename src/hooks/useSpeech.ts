@@ -2,21 +2,56 @@ import { useEffect, useCallback, useRef } from "react";
 
 let cachedVoices: SpeechSynthesisVoice[] = [];
 
+function pickPt(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | undefined {
+  // Prioridade: pt-BR exato > qualquer pt-BR (case-insensitive) > qualquer pt
+  return (
+    voices.find((v) => v.lang === "pt-BR") ||
+    voices.find((v) => v.lang.toLowerCase() === "pt-br") ||
+    voices.find((v) => v.lang.toLowerCase().startsWith("pt-br")) ||
+    voices.find((v) => v.lang.toLowerCase().startsWith("pt"))
+  );
+}
+
 function getPortugueseVoice(): Promise<SpeechSynthesisVoice | undefined> {
   return new Promise((resolve) => {
+    if (cachedVoices.length > 0) {
+      resolve(pickPt(cachedVoices));
+      return;
+    }
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
       cachedVoices = voices;
-      resolve(voices.find((v) => v.lang.startsWith("pt")));
+      resolve(pickPt(voices));
       return;
     }
     const handler = () => {
       cachedVoices = window.speechSynthesis.getVoices();
-      resolve(cachedVoices.find((v) => v.lang.startsWith("pt")));
+      resolve(pickPt(cachedVoices));
       window.speechSynthesis.removeEventListener("voiceschanged", handler);
     };
     window.speechSynthesis.addEventListener("voiceschanged", handler);
+    // Fallback timeout: alguns browsers nunca disparam voiceschanged
+    setTimeout(() => {
+      const v = window.speechSynthesis.getVoices();
+      if (v.length > 0) {
+        cachedVoices = v;
+        resolve(pickPt(v));
+        window.speechSynthesis.removeEventListener("voiceschanged", handler);
+      } else {
+        resolve(undefined);
+      }
+    }, 1000);
   });
+}
+
+// Pré-carrega vozes assim que o módulo é importado
+if (typeof window !== "undefined" && "speechSynthesis" in window) {
+  const preload = () => {
+    const v = window.speechSynthesis.getVoices();
+    if (v.length > 0) cachedVoices = v;
+  };
+  preload();
+  window.speechSynthesis.addEventListener?.("voiceschanged", preload);
 }
 
 const useSpeech = (text: string, autoPlay = true) => {

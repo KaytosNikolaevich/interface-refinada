@@ -48,7 +48,7 @@ const Dashboard = () => {
         <p className="text-primary-foreground/80 text-sm font-semibold mt-1">25% concluído</p>
       </header>
 
-      <section className="px-6 -mt-6 space-y-3" aria-label="Ações rápidas">
+      <section className="px-6 mt-6 space-y-3" aria-label="Ações rápidas">
         {actions.map((action, i) => (
           <motion.button
             key={action.label}

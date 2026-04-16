@@ -1,9 +1,18 @@
-/**
- * Utilitário de áudio — toca um bipe de feedback via Web Audio API.
- */
+let _ctx: AudioContext | null = null;
+
+function getCtx(): AudioContext {
+  if (!_ctx || _ctx.state === "closed") {
+    _ctx = new AudioContext();
+  }
+  if (_ctx.state === "suspended") {
+    _ctx.resume();
+  }
+  return _ctx;
+}
+
 export function playBeep(type: "correct" | "wrong" | "click" = "click"): void {
   try {
-    const ctx = new AudioContext();
+    const ctx = getCtx();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
@@ -11,9 +20,9 @@ export function playBeep(type: "correct" | "wrong" | "click" = "click"): void {
     gain.connect(ctx.destination);
 
     const config = {
-      correct: { freq: 660, type: "sine" as OscillatorType, duration: 0.4 },
+      correct: { freq: 660, type: "sine"   as OscillatorType, duration: 0.4 },
       wrong:   { freq: 200, type: "square" as OscillatorType, duration: 0.4 },
-      click:   { freq: 520, type: "sine" as OscillatorType, duration: 0.3 },
+      click:   { freq: 520, type: "sine"   as OscillatorType, duration: 0.3 },
     };
 
     const { freq, type: waveType, duration } = config[type];

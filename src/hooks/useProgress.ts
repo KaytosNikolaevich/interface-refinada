@@ -6,6 +6,10 @@ export const saveExerciseResult = async (
   isCorrect: boolean,
   _timeSpent: number
 ) => {
+  if (!childId || !exerciseId) {
+    console.warn("saveExerciseResult: childId ou exerciseId ausente, operação cancelada.");
+    return;
+  }
   const { error } = await supabase.from("user_progress").upsert(
     {
       user_id: childId,

@@ -5,7 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import SplashScreen from "@/components/SplashScreen";
+import PageLoader from "@/components/PageLoader";
 
 const Welcome = React.lazy(() => import("./pages/Welcome"));
 const Register = React.lazy(() => import("./pages/Register"));
@@ -29,7 +29,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ErrorBoundary>
-          <Suspense fallback={<SplashScreen />}>
+          <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Welcome />} />
               <Route path="/register" element={<Register />} />

@@ -1,18 +1,27 @@
 import { supabase } from "@/integrations/supabase/client";
 
+const getAuthUserId = async (): Promise<string | null> => {
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data.user) {
+    console.warn("useProgress: usuário não autenticado.");
+    return null;
+  }
+  return data.user.id;
+};
+
 export const saveExerciseResult = async (
-  childId: string,
   exerciseId: string,
   isCorrect: boolean,
   _timeSpent: number
 ) => {
-  if (!childId || !exerciseId) {
-    console.warn("saveExerciseResult: childId ou exerciseId ausente, operação cancelada.");
+  const userId = await getAuthUserId();
+  if (!userId || !exerciseId) {
+    console.warn("saveExerciseResult: sessão ou exerciseId ausente, operação cancelada.");
     return;
   }
   const { error } = await supabase.from("user_progress").upsert(
     {
-      user_id: childId,
+      user_id: userId,
       lesson_id: exerciseId,
       completed: isCorrect,
       score: isCorrect ? 1 : 0,
@@ -23,20 +32,25 @@ export const saveExerciseResult = async (
   if (error) console.error("Erro ao salvar resultado:", error);
 };
 
-export const getAchievements = async (childId: string) => {
+export const getAchievements = async () => {
+  const userId = await getAuthUserId();
+  if (!userId) return [];
   const { data, error } = await supabase
     .from("user_achievements")
     .select("*, achievements(*)")
-    .eq("user_id", childId);
+    .eq("user_id", userId);
   if (error) console.error("Erro ao obter conquistas:", error);
   return data ?? [];
 };
 
-export const getProgressSummary = async (childId: string) => {
+export const getProgressSummary = async () => {
+  const userId = await getAuthUserId();
+  if (!userId) return { totalScore: 0, completedLessons: 0, streak: 0, todayStars: 0 };
+
   const { data, error } = await supabase
     .from("user_progress")
     .select("*")
-    .eq("user_id", childId);
+    .eq("user_id", userId);
 
   if (error) console.error("Erro ao obter progresso:", error);
 

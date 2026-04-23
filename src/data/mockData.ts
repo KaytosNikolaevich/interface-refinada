@@ -120,7 +120,13 @@ export const exercises: Exercise[] = [
   { id: "e-DADO", lessonId: "l-word-DADO", type: "multiple_choice", questionText: "Onde está o DADO?", options: [opt("ow13","BOLA","⚽",false), opt("ow14","DADO","🎲",true), opt("ow15","LAGO","🏞️",false)] },
 ];
 
-export const avatars = ["🧑", "👧", "👦", "👩", "👨", "🧒", "👵", "👴", "🦸", "🧜", "🧚", "🤴"];
+export const avatars = [
+  "🧑", "👧", "👦", "👩", "👨", "🧒",
+  "🦸", "🦹", "🧙", "🧚", "🧜", "🤴",
+  "👸", "🧑‍🚀", "🧑‍🎤", "🥷",
+  "🦊", "🐱", "🐶", "🐼", "🦁", "🐯",
+  "🐵", "🦄", "🐸", "🐰",
+];
 
 export const achievements: Achievement[] = [
   { id: "a1", title: "Primeira Aula", icon: "⭐", unlocked: false },

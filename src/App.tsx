@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageLoader from "@/components/PageLoader";
+import useAuthSession from "@/hooks/useAuthSession";
 
 const Welcome = React.lazy(() => import("./pages/Welcome"));
 const Register = React.lazy(() => import("./pages/Register"));
@@ -22,8 +23,14 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+const AuthBootstrap = ({ children }: { children: React.ReactNode }) => {
+  useAuthSession();
+  return <>{children}</>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <AuthBootstrap>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -48,6 +55,7 @@ const App = () => (
         </ErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
+    </AuthBootstrap>
   </QueryClientProvider>
 );
 

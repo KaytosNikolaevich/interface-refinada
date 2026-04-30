@@ -14,10 +14,7 @@ export const useAuthSession = () => {
   useEffect(() => {
     let mounted = true;
 
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
+
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
       if (!mounted) return;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase, isSupabaseConfigured } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/client";
 import type { Session } from "@supabase/supabase-js";
 
 /**
@@ -14,10 +14,7 @@ export const useAuthSession = () => {
   useEffect(() => {
     let mounted = true;
 
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
+
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
       if (!mounted) return;

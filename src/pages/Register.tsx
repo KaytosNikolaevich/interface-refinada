@@ -79,7 +79,7 @@ const Register = () => {
             animate={{ scale: 1 }}
             whileTap={{ scale: 0.92 }}
             onClick={handleContinue}
-            className="btn-learning bg-primary text-primary-foreground w-full max-w-sm animate-pulse-glow flex items-center justify-center gap-3"
+            className="btn-learning bg-primary text-primary-foreground w-full max-w-sm flex items-center justify-center gap-3"
           >
             <span className="text-3xl" aria-hidden="true">✅</span>
             <span className="text-xl">Continuar</span>

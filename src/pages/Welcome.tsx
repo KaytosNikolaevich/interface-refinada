@@ -65,7 +65,7 @@ const Welcome = () => {
         <motion.button
           whileTap={{ scale: 0.92 }}
           onClick={() => navigate("/register")}
-          className="btn-learning bg-primary text-primary-foreground w-full text-center mt-4 animate-pulse-glow flex items-center justify-center gap-3"
+          className="btn-learning bg-primary text-primary-foreground w-full text-center mt-4 flex items-center justify-center gap-3"
           aria-label="Começar a aprender"
         >
           <span className="text-4xl" aria-hidden="true">▶️</span>

@@ -68,13 +68,29 @@ export const lessons: Lesson[] = [
     textContent: letter,
     orderIndex: i + 1,
   })),
-  ...["BA","BE","BI","BO","BU","CA","CE","CI","CO","CU","DA","DE","DI","DO","DU"].map((syl, i) => ({
-    id: `l-syl-${syl}`,
+  ...[
+    { syl: "BA", e: "🍌" }, // Banana
+    { syl: "BE", e: "👶" }, // Bebê
+    { syl: "BI", e: "🚲" }, // Bicicleta
+    { syl: "BO", e: "⚽" }, // Bola
+    { syl: "BU", e: "🫏" }, // Burro
+    { syl: "CA", e: "🏠" }, // Casa
+    { syl: "CE", e: "🥕" }, // Cenoura
+    { syl: "CI", e: "🎪" }, // Circo
+    { syl: "CO", e: "🥥" }, // Coco
+    { syl: "CU", e: "🧊" },
+    { syl: "DA", e: "🎲" }, // Dado
+    { syl: "DE", e: "🦷" }, // Dente
+    { syl: "DI", e: "🦕" }, // Dinossauro
+    { syl: "DO", e: "🍬" }, // Doce
+    { syl: "DU", e: "👥" },
+  ].map((item, i) => ({
+    id: `l-syl-${item.syl}`,
     moduleId: "2",
-    title: `Sílaba ${syl}`,
+    title: `Sílaba ${item.syl}`,
     contentType: "silaba" as const,
-    imageUrl: emojiImg("📝"),
-    textContent: syl,
+    imageUrl: emojiImg(item.e),
+    textContent: item.syl,
     orderIndex: i + 1,
   })),
   ...([
@@ -107,12 +123,14 @@ export const exercises: Exercise[] = [
   { id: "e-C1", lessonId: "l-C", type: "multiple_choice", questionText: "Qual é a letra C?", options: [opt("o19","C","🏠",true), opt("o20","G","🐱",false), opt("o21","O","👁️",false)] },
   { id: "e-D1", lessonId: "l-D", type: "multiple_choice", questionText: "Qual é a letra D?", options: [opt("o22","B","🍌",false), opt("o23","D","🦕",true), opt("o24","P","🐧",false)] },
   { id: "e-E1", lessonId: "l-E", type: "multiple_choice", questionText: "Qual é a letra E?", options: [opt("o25","E","⭐",true), opt("o26","F","🌸",false), opt("o27","I","🏝️",false)] },
-  { id: "e-BA1", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Qual é a sílaba BA?", options: [opt("os1","BA","🍌",true), opt("os2","DA","🦕",false), opt("os3","CA","🏠",false)] },
+  { id: "e-BA1", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Qual é a sílaba BA?", options: [opt("os1","BA","🍌",true), opt("os2","DA","🎲",false), opt("os3","CA","🏠",false)] },
   { id: "e-BA2", lessonId: "l-syl-BA", type: "multiple_choice", questionText: "Toque em BA", options: [opt("os4","BO","⚽",false), opt("os5","BA","🍌",true), opt("os6","BE","👶",false)] },
-  { id: "e-CA1", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Qual é a sílaba CA?", options: [opt("os7","CA","🏠",true), opt("os8","CO","🥥",false), opt("os9","DA","🦕",false)] },
+  { id: "e-CA1", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Qual é a sílaba CA?", options: [opt("os7","CA","🏠",true), opt("os8","CO","🥥",false), opt("os9","DA","🎲",false)] },
   { id: "e-CA2", lessonId: "l-syl-CA", type: "multiple_choice", questionText: "Toque em CA", options: [opt("os10","BA","🍌",false), opt("os11","CA","🏠",true), opt("os12","CU","🧊",false)] },
   { id: "e-DA1", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Qual é a sílaba DA?", options: [opt("os13","DA","🎲",true), opt("os14","BA","🍌",false), opt("os15","DE","🦷",false)] },
-  { id: "e-DA2", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Toque em DA", options: [opt("os16","DI","💎",false), opt("os17","DA","🎲",true), opt("os18","DO","🎵",false)] },
+  { id: "e-DA2", lessonId: "l-syl-DA", type: "multiple_choice", questionText: "Toque em DA", options: [opt("os16","DI","🦕",false), opt("os17","DA","🎲",true), opt("os18","DO","🍬",false)] },
+  { id: "e-DI1", lessonId: "l-syl-DI", type: "multiple_choice", questionText: "Qual é a sílaba DI?", options: [opt("osd1","DI","🦕",true), opt("osd2","DA","🎲",false), opt("osd3","DO","🍬",false)] },
+  { id: "e-DI2", lessonId: "l-syl-DI", type: "multiple_choice", questionText: "Toque em DI (de Dinossauro)", options: [opt("osd4","DA","🎲",false), opt("osd5","DE","🦷",false), opt("osd6","DI","🦕",true)] },
   { id: "e-BOLA", lessonId: "l-word-BOLA", type: "multiple_choice", questionText: "Onde está a BOLA?", options: [opt("ow1","BOLA","⚽",true), opt("ow2","CASA","🏠",false), opt("ow3","GATO","🐱",false)] },
   { id: "e-CASA", lessonId: "l-word-CASA", type: "multiple_choice", questionText: "Onde está a CASA?", options: [opt("ow4","DADO","🎲",false), opt("ow5","CASA","🏠",true), opt("ow6","MALA","🧳",false)] },
   { id: "e-GATO", lessonId: "l-word-GATO", type: "multiple_choice", questionText: "Onde está o GATO?", options: [opt("ow7","PATO","🦆",false), opt("ow8","RATO","🐀",false), opt("ow9","GATO","🐱",true)] },

@@ -68,13 +68,29 @@ export const lessons: Lesson[] = [
     textContent: letter,
     orderIndex: i + 1,
   })),
-  ...["BA","BE","BI","BO","BU","CA","CE","CI","CO","CU","DA","DE","DI","DO","DU"].map((syl, i) => ({
-    id: `l-syl-${syl}`,
+  ...[
+    { syl: "BA", e: "🍌" }, // Banana
+    { syl: "BE", e: "👶" }, // Bebê
+    { syl: "BI", e: "🚲" }, // Bicicleta
+    { syl: "BO", e: "⚽" }, // Bola
+    { syl: "BU", e: "🫏" }, // Burro
+    { syl: "CA", e: "🏠" }, // Casa
+    { syl: "CE", e: "🥕" }, // Cenoura
+    { syl: "CI", e: "🎪" }, // Circo
+    { syl: "CO", e: "🥥" }, // Coco
+    { syl: "CU", e: "🧊" },
+    { syl: "DA", e: "🎲" }, // Dado
+    { syl: "DE", e: "🦷" }, // Dente
+    { syl: "DI", e: "🦕" }, // Dinossauro
+    { syl: "DO", e: "🍬" }, // Doce
+    { syl: "DU", e: "👥" },
+  ].map((item, i) => ({
+    id: `l-syl-${item.syl}`,
     moduleId: "2",
-    title: `Sílaba ${syl}`,
+    title: `Sílaba ${item.syl}`,
     contentType: "silaba" as const,
-    imageUrl: emojiImg("📝"),
-    textContent: syl,
+    imageUrl: emojiImg(item.e),
+    textContent: item.syl,
     orderIndex: i + 1,
   })),
   ...([

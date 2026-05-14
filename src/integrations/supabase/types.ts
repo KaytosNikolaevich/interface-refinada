@@ -14,16 +14,380 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      achievements: {
+        Row: {
+          created_at: string
+          criteria: Json
+          description: string | null
+          icon: string | null
+          id: string
+          points: number
+          slug: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          criteria?: Json
+          description?: string | null
+          icon?: string | null
+          id?: string
+          points?: number
+          slug: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          criteria?: Json
+          description?: string | null
+          icon?: string | null
+          id?: string
+          points?: number
+          slug?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      exercises: {
+        Row: {
+          correct_answer: Json
+          created_at: string
+          hint: string | null
+          id: string
+          lesson_id: string | null
+          module_id: string | null
+          options: Json
+          order_index: number
+          points: number
+          question: string
+          type: Database["public"]["Enums"]["exercise_type"]
+          updated_at: string
+        }
+        Insert: {
+          correct_answer: Json
+          created_at?: string
+          hint?: string | null
+          id?: string
+          lesson_id?: string | null
+          module_id?: string | null
+          options?: Json
+          order_index?: number
+          points?: number
+          question: string
+          type: Database["public"]["Enums"]["exercise_type"]
+          updated_at?: string
+        }
+        Update: {
+          correct_answer?: Json
+          created_at?: string
+          hint?: string | null
+          id?: string
+          lesson_id?: string | null
+          module_id?: string | null
+          options?: Json
+          order_index?: number
+          points?: number
+          question?: string
+          type?: Database["public"]["Enums"]["exercise_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercises_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercises_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          content: Json
+          created_at: string
+          id: string
+          is_published: boolean
+          module_id: string
+          order_index: number
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          module_id: string
+          order_index?: number
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          module_id?: string
+          order_index?: number
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      modules: {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string | null
+          difficulty: Database["public"]["Enums"]["difficulty_level"]
+          icon: string | null
+          id: string
+          is_published: boolean
+          order_index: number
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty?: Database["public"]["Enums"]["difficulty_level"]
+          icon?: string | null
+          id?: string
+          is_published?: boolean
+          order_index?: number
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty?: Database["public"]["Enums"]["difficulty_level"]
+          icon?: string | null
+          id?: string
+          is_published?: boolean
+          order_index?: number
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          avatar: string
+          created_at: string
+          current_streak: number
+          display_name: string
+          id: string
+          total_score: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          age?: number | null
+          avatar?: string
+          created_at?: string
+          current_streak?: number
+          display_name?: string
+          id?: string
+          total_score?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          age?: number | null
+          avatar?: string
+          created_at?: string
+          current_streak?: number
+          display_name?: string
+          id?: string
+          total_score?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      stories: {
+        Row: {
+          cover_image: string | null
+          created_at: string
+          description: string | null
+          difficulty: Database["public"]["Enums"]["difficulty_level"]
+          id: string
+          is_published: boolean
+          pages: Json
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty?: Database["public"]["Enums"]["difficulty_level"]
+          id?: string
+          is_published?: boolean
+          pages?: Json
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          difficulty?: Database["public"]["Enums"]["difficulty_level"]
+          id?: string
+          is_published?: boolean
+          pages?: Json
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_achievements: {
+        Row: {
+          achievement_id: string
+          id: string
+          unlocked_at: string
+          user_id: string
+        }
+        Insert: {
+          achievement_id: string
+          id?: string
+          unlocked_at?: string
+          user_id: string
+        }
+        Update: {
+          achievement_id?: string
+          id?: string
+          unlocked_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_achievements_achievement_id_fkey"
+            columns: ["achievement_id"]
+            isOneToOne: false
+            referencedRelation: "achievements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_progress: {
+        Row: {
+          attempts: number
+          completed: boolean
+          created_at: string
+          id: string
+          last_access: string
+          lesson_id: string | null
+          module_id: string | null
+          score: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          attempts?: number
+          completed?: boolean
+          created_at?: string
+          id?: string
+          last_access?: string
+          lesson_id?: string | null
+          module_id?: string | null
+          score?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          attempts?: number
+          completed?: boolean
+          created_at?: string
+          id?: string
+          last_access?: string
+          lesson_id?: string | null
+          module_id?: string | null
+          score?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_progress_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      difficulty_level: "easy" | "medium" | "hard"
+      exercise_type:
+        | "multiple_choice"
+        | "matching"
+        | "spelling"
+        | "listening"
+        | "speaking"
+        | "drag_drop"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +514,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      difficulty_level: ["easy", "medium", "hard"],
+      exercise_type: [
+        "multiple_choice",
+        "matching",
+        "spelling",
+        "listening",
+        "speaking",
+        "drag_drop",
+      ],
+    },
   },
 } as const
